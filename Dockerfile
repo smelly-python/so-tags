@@ -1,4 +1,4 @@
-FROM python:3.10.4-slim
+FROM python:3.10.4
 
 WORKDIR /root/ 
 
@@ -16,5 +16,5 @@ EXPOSE 8080
 
 ENTRYPOINT ["python"]
 
-CMD ["src/server_model.py"]
+CMD ["src/serve_model.py"]
 
