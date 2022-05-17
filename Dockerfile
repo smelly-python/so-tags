@@ -1,16 +1,14 @@
-FROM python:3.10.4
+FROM python:3.10.4-slim
 
 WORKDIR /root/ 
 
 COPY requirements.txt . 
 
-COPY output output
+RUN mkdir output && python -m pip install --upgrade pip && pip install -r requirements.txt 
 
-RUN pip install -r requirements.txt 
+COPY src ./src 
 
-COPY src src 
-
-COPY data data
+COPY data ./data
 
 RUN python src/create_model.py
 
