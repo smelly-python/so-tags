@@ -15,6 +15,7 @@ swagger = Swagger(app)
 
 clf = {}
 
+
 @app.route('/predict', methods=['POST'])
 def predict():
     """
@@ -55,7 +56,6 @@ def predict():
     return jsonify(res)
 
 
-
 @app.route("/dumbpredict", methods=['POST'])
 def dumbPredict():
     res = {
@@ -64,7 +64,6 @@ def dumbPredict():
     }
     return jsonify(res)
 
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080, debug=True)
-
-

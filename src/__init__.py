@@ -13,8 +13,8 @@ if __name__ == '__main__':
 
     # build preparation
     X_train_tfidf, X_val_tfidf, X_test_tfidf, tfidf_vocab = \
-        tfidf_features(data_text_prepare(X_train), 
-        data_text_prepare(X_val), data_text_prepare(X_test))
+        tfidf_features(data_text_prepare(X_train),
+                       data_text_prepare(X_val), data_text_prepare(X_test))
     tfidf_reversed_vocab = {i: word for word, i in tfidf_vocab.items()}
 
     # binarise labels
@@ -24,7 +24,8 @@ if __name__ == '__main__':
     classifier_tfidf = train_classifier(X_train_tfidf, y_train)
     # predict labels and scores
     y_val_predicted_labels_tfidf = classifier_tfidf.predict(X_val_tfidf)
-    y_val_predicted_scores_tfidf = classifier_tfidf.decision_function(X_val_tfidf)
+    y_val_predicted_scores_tfidf = classifier_tfidf.decision_function(
+        X_val_tfidf)
 
     # evaluation
     evaluate(y_val, y_val_predicted_labels_tfidf)
