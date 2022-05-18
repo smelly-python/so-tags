@@ -59,7 +59,7 @@ def predict():
 @app.route("/dumbpredict", methods=['POST'])
 def dumbPredict():
     res = {
-        "restult": "some tag",
+        "result": "some tag",
         "so_title": "my cool java application!"
     }
     return jsonify(res)
