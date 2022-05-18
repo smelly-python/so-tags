@@ -1,3 +1,7 @@
+"""
+Module responsible for building the features.
+"""
+
 from src.data.make_dataset import make_dataset
 from src.preparation.build_features import data_text_prepare, tfidf_features
 from src.preparation.binarise_labels import binarise
@@ -5,9 +9,6 @@ from src.models.train_model import train_classifier
 from src.evaluation.evaluate import evaluate
 
 if __name__ == '__main__':
-    '''
-    Main method for the src packages.   
-    '''
     # make dataset
     X_train, y_train, X_val, y_val, X_test = make_dataset()
 

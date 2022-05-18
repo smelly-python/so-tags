@@ -1,8 +1,11 @@
+"""
+Module responsible for training the model.
+"""
 from sklearn.multiclass import OneVsRestClassifier
-from sklearn.linear_model import LogisticRegression, RidgeClassifier
+from sklearn.linear_model import LogisticRegression
 
 
-def train_classifier(X_train, y_train, penalty='l1', C=1):
+def train_classifier(x_train, y_train, penalty='l1', const=1):
     """
       X_train, y_train — training data
 
@@ -11,8 +14,12 @@ def train_classifier(X_train, y_train, penalty='l1', C=1):
 
     # Create and fit LogisticRegression wraped into OneVsRestClassifier.
 
-    clf = LogisticRegression(penalty=penalty, C=C, dual=False, solver='liblinear')
+    clf = LogisticRegression(
+        penalty=penalty,
+        C=const,
+        dual=False,
+        solver='liblinear')
     clf = OneVsRestClassifier(clf)
-    clf.fit(X_train, y_train)
+    clf.fit(x_train, y_train)
 
     return clf

@@ -1,15 +1,21 @@
+"""
+Module responsible for creating the model.
+"""
+from ast import literal_eval
+
 import pandas as pd
 from sklearn.preprocessing import MultiLabelBinarizer
+from joblib import dump
 
 from models import train_model
 from preparation import build_features
 from preparation import binarise_labels
-from ast import literal_eval
-
-from joblib import dump, load
 
 
 def read_data(filename):
+    """
+    Read data from a file.
+    """
     data = pd.read_csv(filename, sep='\t')
     data['tags'] = data['tags'].apply(literal_eval)
     return data
