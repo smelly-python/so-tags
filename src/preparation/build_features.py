@@ -1,4 +1,4 @@
-import src.settings as settings
+import settings
 import re
 import numpy as np
 from scipy import sparse as sp_sparse
