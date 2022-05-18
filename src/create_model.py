@@ -25,3 +25,4 @@ if __name__ == '__main__':
 
     dump(clf, 'output/model.joblib')
     print("Stored the model in output/model.joblib")
+    

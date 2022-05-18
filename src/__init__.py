@@ -5,12 +5,16 @@ from src.models.train_model import train_classifier
 from src.evaluation.evaluate import evaluate
 
 if __name__ == '__main__':
+    '''
+    Main method for the src packages.   
+    '''
     # make dataset
     X_train, y_train, X_val, y_val, X_test = make_dataset()
 
     # build preparation
     X_train_tfidf, X_val_tfidf, X_test_tfidf, tfidf_vocab = \
-        tfidf_features(data_text_prepare(X_train), data_text_prepare(X_val), data_text_prepare(X_test))
+        tfidf_features(data_text_prepare(X_train), 
+        data_text_prepare(X_val), data_text_prepare(X_test))
     tfidf_reversed_vocab = {i: word for word, i in tfidf_vocab.items()}
 
     # binarise labels
@@ -24,5 +28,3 @@ if __name__ == '__main__':
 
     # evaluation
     evaluate(y_val, y_val_predicted_labels_tfidf)
-
-
