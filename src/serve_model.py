@@ -39,7 +39,6 @@ def predict():
     input_data = request.get_json()
     so_title = input_data.get('so_title')
     clf = load('output/model.joblib')
-    clf.predict(so_title)
 
     res = {
         "result": clf.predict(so_title),
