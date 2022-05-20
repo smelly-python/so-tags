@@ -2,8 +2,11 @@
 Module responsible for building the features.
 """
 
+# Commented to keep the file, but contents we need are now in create_model and serve_model
+# TODO: remove when all code is moved to other files
+'''
 from src.data.make_dataset import make_dataset
-from src.preparation.build_features import data_text_prepare, tfidf_features
+from src.preparation.build_features import data_text_prepare
 from src.preparation.binarise_labels import binarise
 from src.models.train_model import train_classifier
 from src.evaluation.evaluate import evaluate
@@ -30,3 +33,4 @@ if __name__ == '__main__':
 
     # evaluation
     evaluate(y_val, y_val_predicted_labels_tfidf)
+'''

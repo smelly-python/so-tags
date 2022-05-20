@@ -14,7 +14,7 @@ COPY src ./src
 
 COPY data ./data
 
-RUN pipenv run python src/create_model.py
+RUN pipenv run python -m src.create_model
 
 EXPOSE 8080
 

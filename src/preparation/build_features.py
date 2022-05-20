@@ -3,10 +3,12 @@ Module responsible for building features.
 """
 
 import re
+from os import path
 import numpy as np
+import pickle as pkl
 from scipy import sparse as sp_sparse
 from sklearn.feature_extraction.text import TfidfVectorizer
-import settings
+from src import settings
 
 DICT_SIZE = 5000
 
@@ -77,21 +79,40 @@ def get_bag(lst):
         create_bag_of_words(text, words_to_index, DICT_SIZE)) for text in lst])
 
 
-def tfidf_features(x_train, x_val, x_test):
-    """
-        X_train, X_val, X_test — samples
-        return TF-IDF vectorized representation of each sample and vocabulary
-    """
-    # Create TF-IDF vectorizer with a proper parameters choice
-    tfidf_vectorizer = TfidfVectorizer(
-        min_df=5, max_df=0.9, ngram_range=(
-            1, 2), token_pattern='(\\S+)')
+class Vectorizer:
+    FILE_NAME = 'vectorizer.pkl'
 
-    # Fit the vectorizer on the train set
-    train_res = tfidf_vectorizer.fit_transform(x_train)
+    def __init__(self, tfidf_vectorizer=None):
+        # Create TF-IDF vectorizer with a proper parameters choice
+        if tfidf_vectorizer:
+            self.tfidf_vectorizer = tfidf_vectorizer
+        else:
+            self.tfidf_vectorizer = TfidfVectorizer(
+                min_df=5, max_df=0.9, ngram_range=(
+                    1, 2), token_pattern='(\\S+)')
 
-    # Transform the train, test, and val sets and return the result
-    val_res = tfidf_vectorizer.transform(x_val)
-    test_res = tfidf_vectorizer.transform(x_test)
+    def tfidf_features_training(self, x_train, x_val, x_test):
+        """
+            X_train, X_val, X_test — samples
+            return TF-IDF vectorized representation of each sample and vocabulary
+        """
+        # Fit the vectorizer on the train set
+        train_res = self.tfidf_vectorizer.fit_transform(x_train)
 
-    return train_res, val_res, test_res, tfidf_vectorizer.vocabulary_
+        # Transform the train, test, and val sets and return the result
+        val_res = self.tfidf_vectorizer.transform(x_val)
+        test_res = self.tfidf_vectorizer.transform(x_test)
+
+        return train_res, val_res, test_res, self.tfidf_vectorizer.vocabulary_
+
+    def featurize(self, sample):
+        return self.tfidf_vectorizer.transform([sample])
+
+    def write_to_file(self, out_folder):
+        with open(path.join(out_folder, Vectorizer.FILE_NAME), 'wb') as out_file:
+            pkl.dump(self.tfidf_vectorizer, out_file)
+
+    @staticmethod
+    def load_from_file(folder):
+        with open(path.join(folder, Vectorizer.FILE_NAME), 'rb') as in_file:
+            return Vectorizer(pkl.load(in_file))

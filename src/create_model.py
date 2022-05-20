@@ -4,12 +4,12 @@ Module responsible for creating the model.
 from ast import literal_eval
 
 import pandas as pd
-from sklearn.preprocessing import MultiLabelBinarizer
-from joblib import dump
-
-from models import train_model
-from preparation import build_features
-from preparation import binarise_labels
+import pickle as pkl
+from os import path
+from src.models.train_model import train_classifier
+from src.data.make_dataset import make_dataset
+from src.preparation.binarise_labels import Binarizer
+from src.preparation.build_features import Vectorizer, data_text_prepare
 
 
 def read_data(filename):
@@ -22,15 +22,28 @@ def read_data(filename):
 
 
 if __name__ == '__main__':
-    train = read_data('./data/train.tsv')
-    X_train, y_train = train['title'].values, train['tags'].values
-    mlb = MultiLabelBinarizer(classes=sorted(
-        binarise_labels.get_tags_count(y_train).keys()))
-    X_train = [build_features.text_prepare(x) for x in X_train]
-    y_train = mlb.fit_transform(y_train)
-    X_train_mybag = build_features.get_bag(X_train)
+    # TODO: refactor into class that just takes train set
+    # make dataset
+    X_train, y_train, X_val, y_val, X_test = make_dataset()
+    X_train = data_text_prepare(X_train)
+    X_val = data_text_prepare(X_val)
+    X_test = data_text_prepare(X_test)
+    print(X_train)
+    # build preparation
+    vectorizer = Vectorizer()
+    X_train, X_val, X_test, vocab = vectorizer.tfidf_features_training(X_train, X_val, X_test)
+    print(X_train)
+    vectorizer.write_to_file('output')
 
-    clf = train_model.train_classifier(X_train_mybag, y_train)
+    # binarize labels
+    binarizer = Binarizer(y_train)
+    y_train, y_val = binarizer.binarize_training(y_train, y_val)
+    binarizer.write_to_file('output')
+    print(y_train)
 
-    dump(clf, 'output/model.joblib')
-    print("Stored the model in output/model.joblib")
+    # train model
+    clf = train_classifier(X_train, y_train)
+
+    with open(path.join('output', 'classifier.pkl'), 'wb') as out_file:
+        pkl.dump(clf, out_file)
+        print("Stored the model in output/classifier.pkl")
