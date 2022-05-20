@@ -1,19 +1,14 @@
-import imp
+"""
+Module responsible for serving the model via HTTP requests.
+"""
 from flask import Flask, jsonify, request
 from flasgger import Swagger
-import pandas as pd
-from sklearn.preprocessing import MultiLabelBinarizer
 
-from models import train_model
-from preparation import build_features
-from preparation import binarise_labels
-from joblib import dump, load
-from ast import literal_eval
+from joblib import load
 
 app = Flask(__name__)
 swagger = Swagger(app)
 
-clf = {}
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -44,7 +39,6 @@ def predict():
     input_data = request.get_json()
     so_title = input_data.get('so_title')
     clf = load('output/model.joblib')
-    clf.predict(so_title)
 
     res = {
         "result": clf.predict(so_title),
@@ -55,16 +49,17 @@ def predict():
     return jsonify(res)
 
 
-
 @app.route("/dumbpredict", methods=['POST'])
-def dumbPredict():
+def dumb_predict():
+    """
+    Return standard response, similar to the /predict endpoint.
+    """
     res = {
         "result": "some tag",
         "so_title": "my cool java application!"
     }
     return jsonify(res)
 
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080, debug=True)
-
-

@@ -1,14 +1,23 @@
+"""
+Module responsible for creating the dataset.
+"""
 from ast import literal_eval
 import pandas as pd
 
 
 def read_data(filename):
+    """
+    Read the data.
+    """
     data = pd.read_csv(filename, sep='\t')
     data['tags'] = data['tags'].apply(literal_eval)
     return data
 
 
 def make_dataset():
+    """
+    Create a dataset
+    """
     train = read_data('data/train.tsv')
     X_train, y_train = train['title'].values, train['tags'].values
 
