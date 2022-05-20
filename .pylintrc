@@ -1,12 +1,10 @@
 [MASTER]
 init-hook='import sys; sys.path.append("./src")'
 
-
 load-plugins=dslinter
 
 
 [MESSAGES CONTROL]
-
 enable=import,
         unnecessary-iteration-pandas,
         unnecessary-iteration-tensorflow,

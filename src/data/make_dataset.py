@@ -19,12 +19,12 @@ def make_dataset():
     Create a dataset
     """
     train = read_data('data/train.tsv')
-    x_train, y_train = train['title'].values, train['tags'].values
+    X_train, y_train = train['title'].values, train['tags'].values
 
     validation = read_data('data/validation.tsv')
-    x_val, y_val = validation['title'].values, validation['tags'].values
+    X_val, y_val = validation['title'].values, validation['tags'].values
 
     test = pd.read_csv('data/test.tsv', sep='\t')
-    x_test = test['title'].values
+    X_test = test['title'].values
 
-    return x_train, y_train, x_val, y_val, X_test
+    return X_train, y_train, X_val, y_val, X_test
