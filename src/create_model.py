@@ -21,6 +21,8 @@ def read_data(filename):
 
 
 if __name__ == '__main__':
+    # Ignore pylint TODO: will be fixed later
+    # pylint: disable=fixme
     # TODO: refactor into class that just takes train set
     # make dataset
     X_train, y_train, X_val, y_val, X_test = make_dataset()
