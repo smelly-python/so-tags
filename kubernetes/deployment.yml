@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: so-tags-deployment
+        labels: 
+                app: so-tags
+spec:
+        replicas: 1
+        selector: 
+                matchLabels:
+                       app: so-tags
+        template:
+                metadata:
+                        labels:
+                                app: so-tags
+          
