@@ -2,10 +2,9 @@
 Module responsible for creating the model.
 """
 from ast import literal_eval
-
-import pandas as pd
-import pickle as pkl
 from os import path
+import pickle as pkl
+import pandas as pd
 from src.models.train_model import train_classifier
 from src.data.make_dataset import make_dataset
 from src.preparation.binarise_labels import Binarizer

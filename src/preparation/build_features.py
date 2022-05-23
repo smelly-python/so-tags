@@ -4,8 +4,8 @@ Module responsible for building features.
 
 import re
 from os import path
-import numpy as np
 import pickle as pkl
+import numpy as np
 from scipy import sparse as sp_sparse
 from sklearn.feature_extraction.text import TfidfVectorizer
 from src import settings
@@ -80,6 +80,10 @@ def get_bag(lst):
 
 
 class Vectorizer:
+    """
+        Wrapper for the td_idf vectorizer that adds some utility functions.
+    """
+
     FILE_NAME = 'vectorizer.pkl'
 
     def __init__(self, tfidf_vectorizer=None):
@@ -106,13 +110,27 @@ class Vectorizer:
         return train_res, val_res, test_res, self.tfidf_vectorizer.vocabulary_
 
     def featurize(self, sample):
+        """
+            sample: the title to featurize
+            return TF-IDF vectorized representation of a single sample
+        """
         return self.tfidf_vectorizer.transform([sample])
 
     def write_to_file(self, out_folder):
+        """
+            out_folder: folder in which the file should be written
+            Writes the tfidf vectorizer to a pickle file
+        """
         with open(path.join(out_folder, Vectorizer.FILE_NAME), 'wb') as out_file:
             pkl.dump(self.tfidf_vectorizer, out_file)
 
     @staticmethod
     def load_from_file(folder):
+        """
+            Reads the tfidf vectorizer from a file and creates a Vectorizer with it
+
+            folder: folder from which the file should be read
+            return the Vectorizer
+        """
         with open(path.join(folder, Vectorizer.FILE_NAME), 'rb') as in_file:
             return Vectorizer(pkl.load(in_file))
