@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+        name: so-tags-pod
+spec: 
+        containers:
+        - name: so-tags-container
+          image: ghcr.io/sarajuhosova/so-tags:latest
+          ports: 
+                - containerPort: 8080
