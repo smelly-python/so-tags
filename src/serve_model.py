@@ -1,6 +1,7 @@
 """
 Module responsible for serving the model via HTTP requests.
 """
+import json
 import pickle as pkl
 from os import path
 from flask import Flask, jsonify, request
@@ -19,6 +20,9 @@ vectorizer = Vectorizer.load_from_file('output')
 binarizer = Binarizer.load_from_file('output')
 
 predictor = Predictor(clf, vectorizer, binarizer)
+
+with open(path.join('output', 'evaluation.json'), 'r') as eval_file:
+    evaluation_results = json.load(eval_file)
 
 
 @app.route('/predict', methods=['POST'])
@@ -44,7 +48,6 @@ def predict():
       200:
         description: "The result of the classification: List of strings with tags."
     """
-
     input_data = request.get_json()
     so_title = input_data.get('so_title')
 
@@ -54,6 +57,20 @@ def predict():
     }
 
     return jsonify(res)
+
+
+@app.route('/evaluation', methods=['GET'])
+def evaluation():
+    """
+    Gives the evaluation from training
+    ---
+    consumes:
+      - application.json
+    responses:
+      200:
+        evaluation: "The scores from the evaluation after training."
+    """
+    return evaluation_results
 
 
 @app.route("/dumbpredict", methods=['POST'])
