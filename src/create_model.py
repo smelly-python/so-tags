@@ -29,18 +29,15 @@ if __name__ == '__main__':
     X_train = data_text_prepare(X_train)
     X_val = data_text_prepare(X_val)
     X_test = data_text_prepare(X_test)
-    print(X_train)
     # build preparation
     vectorizer = Vectorizer()
     X_train, X_val, X_test, vocab = vectorizer.tfidf_features_training(X_train, X_val, X_test)
-    print(X_train)
     vectorizer.write_to_file('output')
 
     # binarize labels
     binarizer = Binarizer(y_train)
     y_train, y_val = binarizer.binarize_training(y_train, y_val)
     binarizer.write_to_file('output')
-    print(y_train)
 
     # train model
     clf = train_classifier(X_train, y_train)

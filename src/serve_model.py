@@ -45,8 +45,6 @@ def predict():
         description: "The result of the classification: List of strings with tags."
     """
 
-    print(request)
-    print(request.json)
     input_data = request.get_json()
     so_title = input_data.get('so_title')
 
@@ -55,7 +53,6 @@ def predict():
         "so_title": so_title
     }
 
-    print(res)
     return jsonify(res)
 
 
