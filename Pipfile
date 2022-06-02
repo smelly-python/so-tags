@@ -24,4 +24,4 @@ python_version = "3.9"
 [scripts]
 pylint = "pylint src"
 test = "pytest test"
-serve = "python src/serve_model.py"
+serve = "python -m src.serve_model"
