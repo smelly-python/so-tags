@@ -25,4 +25,3 @@ python_version = "3.9"
 pylint = "pylint src"
 test = "pytest test"
 serve = "python src/serve_model.py"
-
