@@ -132,3 +132,9 @@ dmypy.json
 
 # PyCharm
 .idea/
+
+# folders tracked by DVC
+data/*
+!data/.gitkeep
+output/*
+!output/.gitkeep

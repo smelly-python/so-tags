@@ -1,0 +1,21 @@
+stages:
+  create_model:
+    cmd: pipenv run create
+    deps:
+    - data/train.tsv
+    - data/test.tsv
+    - data/validation.tsv
+    outs:
+    - output/binarizer.pkl
+    - output/classifier.pkl
+    - output/evaluation.json
+    - output/vectorizer.pkl
+  get_data:
+    cmd: pipenv run download_data
+    deps:
+    - config.yaml
+    - src/data/download_files.py
+    outs:
+    - data/test.tsv
+    - data/train.tsv
+    - data/validation.tsv
