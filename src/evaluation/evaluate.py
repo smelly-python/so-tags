@@ -7,6 +7,7 @@ from os import path
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import f1_score
 from sklearn.metrics import average_precision_score
+from sklearn.metrics import roc_auc_score
 
 
 class EvaluationResult:
@@ -14,10 +15,11 @@ class EvaluationResult:
     Holds the metrics computed during the evaluation
     """
 
-    def __init__(self, accuracy, f_1, precision):
+    def __init__(self, accuracy, f_1, precision, roc_auc):
         self.accuracy_score = accuracy
         self.f1_score = f_1
         self.average_precision_score = precision
+        self.roc_auc = roc_auc
 
     def to_json(self):
         """
@@ -42,5 +44,6 @@ def evaluate(y_val, predicted, out_folder):
     acc = accuracy_score(y_val, predicted)
     f_1 = f1_score(y_val, predicted, average='weighted')
     precision = average_precision_score(y_val, predicted, average='macro')
-    eval_result = EvaluationResult(acc, f_1, precision)
+    roc_auc = roc_auc_score(y_val, predicted, multi_class='ovo')
+    eval_result = EvaluationResult(acc, f_1, precision, roc_auc)
     eval_result.write_evaluation_scores(out_folder)
