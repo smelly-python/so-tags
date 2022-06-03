@@ -1,0 +1,37 @@
+schema: '2.0'
+stages:
+  create_model:
+    cmd: python src/create_model.py
+    deps:
+    - path: data/test.tsv
+      md5: f06925444bd9e4b12b382e0e267345a7
+      size: 1041379
+    - path: data/train.tsv
+      md5: 2502592a16c44c1e33cb827b2a647406
+      size: 7196138
+    - path: data/validation.tsv
+      md5: 508e1de849c33ba2f38f0b118590a4cd
+      size: 2166270
+    outs:
+    - path: output/model.joblib
+      md5: 679332de1691344a1b874a462a9ecaf5
+      size: 4030327
+  get_data:
+    cmd: python src/data/download_files.py
+    deps:
+    - path: config.yaml
+      md5: 8570bcbd7000e8607992c2ac85c3d49c
+      size: 289
+    - path: src/data/download_files.py
+      md5: c07d0d8b0e0f306cbdd10ed9500de7f6
+      size: 473
+    outs:
+    - path: data/test.tsv
+      md5: f06925444bd9e4b12b382e0e267345a7
+      size: 1041379
+    - path: data/train.tsv
+      md5: 2502592a16c44c1e33cb827b2a647406
+      size: 7196138
+    - path: data/validation.tsv
+      md5: 508e1de849c33ba2f38f0b118590a4cd
+      size: 2166270

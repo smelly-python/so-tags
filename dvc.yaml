@@ -1,0 +1,18 @@
+stages:
+  create_model:
+    cmd: python src/create_model.py
+    deps:
+    - data/train.tsv
+    - data/test.tsv
+    - data/validation.tsv
+    outs:
+    - output/model.joblib
+  get_data:
+    cmd: python src/data/download_files.py
+    deps:
+    - config.yaml
+    - src/data/download_files.py
+    outs:
+    - data/test.tsv
+    - data/train.tsv
+    - data/validation.tsv
