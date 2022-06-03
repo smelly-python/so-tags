@@ -2,6 +2,7 @@
 init-hook='import sys; sys.path.append("./src")'
 
 load-plugins=dslinter
+variable-rgx=[A-Za-z_][a-z0-9_]
 
 
 [MESSAGES CONTROL]

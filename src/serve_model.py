@@ -21,7 +21,7 @@ binarizer = Binarizer.load_from_file('output')
 
 predictor = Predictor(clf, vectorizer, binarizer)
 
-with open(path.join('output', 'evaluation.json'), 'r') as eval_file:
+with open(path.join('output', 'evaluation.json'), 'r', encoding='utf-8') as eval_file:
     evaluation_results = json.load(eval_file)
 
 

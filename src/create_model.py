@@ -27,7 +27,7 @@ if __name__ == '__main__':
     # pylint: disable=fixme
     # TODO: refactor into class that just takes train set
 
-    output_folder = 'output'
+    OUTPUT_FOLDER = 'output'
 
     # make dataset
     X_train, y_train, X_val, y_val, X_test = make_dataset()
@@ -37,12 +37,12 @@ if __name__ == '__main__':
     # build preparation
     vectorizer = Vectorizer()
     X_train, X_val, X_test, vocab = vectorizer.tfidf_features_training(X_train, X_val, X_test)
-    vectorizer.write_to_file(output_folder)
+    vectorizer.write_to_file(OUTPUT_FOLDER)
 
     # binarize labels
     binarizer = Binarizer(y_train)
     y_train, y_val = binarizer.binarize_training(y_train, y_val)
-    binarizer.write_to_file(output_folder)
+    binarizer.write_to_file(OUTPUT_FOLDER)
 
     # train model
     clf = train_classifier(X_train, y_train)
@@ -52,8 +52,8 @@ if __name__ == '__main__':
     y_val_predicted_scores_tfidf = clf.decision_function(X_val)
 
     # evaluation
-    evaluate(y_val, y_val_predicted_labels_tfidf, output_folder)
+    evaluate(y_val, y_val_predicted_labels_tfidf, OUTPUT_FOLDER)
 
-    with open(path.join(output_folder, 'classifier.pkl'), 'wb') as out_file:
+    with open(path.join(OUTPUT_FOLDER, 'classifier.pkl'), 'wb') as out_file:
         pkl.dump(clf, out_file)
-        print(f'Stored the model in {output_folder}/classifier.pkl')
+        print(f'Stored the model in {OUTPUT_FOLDER}/classifier.pkl')
