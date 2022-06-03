@@ -29,8 +29,8 @@ stages:
     cmd: pipenv run download_data
     deps:
     - path: config.yaml
-      md5: 8570bcbd7000e8607992c2ac85c3d49c
-      size: 289
+      md5: 7f4a42c853614a1c2a19e8a3ee418434
+      size: 288
     - path: src/data/download_files.py
       md5: 1327adf6f4a63008af2a1759ed87c8fa
       size: 653
