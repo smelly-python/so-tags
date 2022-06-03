@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   create_model:
-    cmd: python src/create_model.py
+    cmd: pipenv run create
     deps:
     - path: data/test.tsv
       md5: f06925444bd9e4b12b382e0e267345a7
@@ -13,18 +13,27 @@ stages:
       md5: 508e1de849c33ba2f38f0b118590a4cd
       size: 2166270
     outs:
-    - path: output/model.joblib
-      md5: 679332de1691344a1b874a462a9ecaf5
-      size: 4030327
+    - path: output/binarizer.pkl
+      md5: 607b70217f89a1955248bd12833026e9
+      size: 1881
+    - path: output/classifier.pkl
+      md5: f23d3b8e17b360fa4f8e6cc5b2e5f5ce
+      size: 14666649
+    - path: output/evaluation.json
+      md5: 37003e0ef8096691b3971f38acc2165a
+      size: 150
+    - path: output/vectorizer.pkl
+      md5: e1ed18f7932291e49cf3c9ddf7c11384
+      size: 5381461
   get_data:
-    cmd: python src/data/download_files.py
+    cmd: pipenv run download_data
     deps:
     - path: config.yaml
       md5: 8570bcbd7000e8607992c2ac85c3d49c
       size: 289
     - path: src/data/download_files.py
-      md5: c07d0d8b0e0f306cbdd10ed9500de7f6
-      size: 473
+      md5: 1327adf6f4a63008af2a1759ed87c8fa
+      size: 653
     outs:
     - path: data/test.tsv
       md5: f06925444bd9e4b12b382e0e267345a7
