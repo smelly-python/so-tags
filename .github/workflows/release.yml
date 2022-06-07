@@ -92,18 +92,20 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [deploy]
     steps:
-      - uses: actions/checkout@v3
       - name: run ssh commands
         uses: appleboy/ssh-action@master
+        env:
+          TAG: ${GITHUB_REF:11}
         with:
           host: ${{ secrets.HOST }}
           script_stop: false
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
+          envs: TAG
           script: |
             git clone https://github.com/smelly-python/so-tags.git so-tags-tmp
             cd so-tags-tmp
-            git checkout ${GITHUB_REF:11}
+            git checkout $TAG
             cd ../
             kubectl apply -f ./so-tags-tmp/kubernetes/deployment.yml
             rm -rf so-tags-tmp
