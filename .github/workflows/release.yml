@@ -99,7 +99,7 @@ jobs:
           host: ${{ secrets.HOST }}
           script_stop: true
           username: ${{ secrets.USERNAME }}
-          password: ${{ secrest.PASSWORD }}
+          password: ${{ secrets.PASSWORD }}
           script: |
             git clone https://github.com/smelly-python/so-tags.git so-tags-tmp
             cd so-tags-tmp
