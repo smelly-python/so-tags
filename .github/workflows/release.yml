@@ -97,7 +97,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          script_stop: true
+          script_stop: false
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
@@ -105,7 +105,7 @@ jobs:
             cd so-tags-tmp
             git checkout ${GITHUB_REF:11}
             cd ../
-            kubectl apply -f so-tags-tmp/kubernetes/deployment.yml
+            kubectl apply -f ./so-tags-tmp/kubernetes/deployment.yml
             rm -rf so-tags-tmp
             kubectl rollout restart deployment/so-tags-deployment
 
