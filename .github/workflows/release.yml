@@ -95,7 +95,7 @@ jobs:
       - name: run ssh commands
         uses: appleboy/ssh-action@master
         env:
-          TAG: ${GITHUB_REF:11}
+          TAG: ${{ GITHUB_REF:11 }}
         with:
           host: ${{ secrets.HOST }}
           script_stop: false
