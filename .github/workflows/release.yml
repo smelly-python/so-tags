@@ -87,5 +87,31 @@ jobs:
             -t ${IMG}:${{ env.version }} \
             .
           docker push --all-tags $IMG
-            
+  restart-kubernetes:
+    name: restart kubernetes deployment
+    runs-on: ubuntu-20.04
+    needs: [deploy]
+    steps:
+      - name: Extract tag
+        run: |
+          TAG=${GITHUB_REF:10}
+          echo "tag=$TAG" >> $GITHUB_ENV
+      - name: Run ssh commands
+        uses: appleboy/ssh-action@master
+        env:
+          TAG: ${{ env.tag }}
+        with:
+          host: ${{ secrets.HOST }}
+          script_stop: false
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          envs: TAG
+          script: |
+            git clone https://github.com/smelly-python/so-tags.git so-tags-tmp
+            cd so-tags-tmp
+            git checkout $TAG
+            cd ../
+            kubectl apply -f ./so-tags-tmp/kubernetes/deployment.yml
+            rm -rf so-tags-tmp
+            kubectl rollout restart deployment/so-tags-deployment
 
