@@ -16,7 +16,7 @@ spec:
     spec: 
       containers: 
       - name: so-tags
-        image: ghcr.io/sarajuhosova/so-tags:latest
+        image: ghcr.io/smelly-python/so-tags:latest
         ports: 
         - containerPort: 8080
 

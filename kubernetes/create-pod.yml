@@ -5,6 +5,6 @@ metadata:
 spec: 
         containers:
         - name: so-tags-container
-          image: ghcr.io/sarajuhosova/so-tags:latest
+          image: ghcr.io/smelly-python/so-tags:latest
           ports: 
                 - containerPort: 8080
