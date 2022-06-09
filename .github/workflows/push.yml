@@ -35,6 +35,7 @@ jobs:
     - uses: smelly-python/smell-my-pr@v1
       with: 
         python-dir: src
+        github-token: ${{secrets.GITHUB_TOKEN}}
   tests: 
     name: tests
     runs-on: ubuntu-20.04
