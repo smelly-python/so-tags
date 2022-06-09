@@ -21,6 +21,7 @@ gdown = "~=4.4.0"
 pylint = "~=2.13.9"
 dslinter = "~=1.0.0"
 pytest = "~=7.1.2"
+smelly-python
 
 [requires]
 python_version = "3.9"

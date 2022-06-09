@@ -32,6 +32,9 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pipenv run pylint
+    - uses: smelly-python/smell-my-pr@v1
+      with: 
+        python-dir: src
   tests: 
     name: tests
     runs-on: ubuntu-20.04
