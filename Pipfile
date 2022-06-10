@@ -28,7 +28,7 @@ python_version = "3.9"
 
 [scripts]
 pylint = "pylint src"
-report = "smelly-python -f src"
+report = "smelly-python -d src"
 test = "pytest test"
 serve = "python -m src.serve_model"
 create = "python -m src.create_model"
