@@ -32,7 +32,7 @@ jobs:
     # - name: Analysing the code with pylint
     #   run: |
     #     pipenv run pylint
-    - uses: smelly-python/smell-my-pr@v1
+    - uses: smelly-python/smell-my-pr@v2
       with: 
         github-token: ${{secrets.GITHUB_TOKEN}}
         command: pipenv run report
