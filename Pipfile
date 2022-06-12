@@ -22,6 +22,7 @@ dvc = "~=2.11.0"
 pytest = "~=7.1.2"
 dslinter = "~=2.0.8"
 pylint = "~=2.12.2"
+smelly-python = "*"
 
 [requires]
 python_version = "3.9"

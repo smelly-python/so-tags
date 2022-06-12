@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8296da6c4e670fb0ef0f1a1b2ca8ff2d1fcd0200321641254e00642938294ad1"
+            "sha256": "7807d7d10853d9ac153bfb8034de23cc5b08a489f156a8c2b00d0310b1a0b3c8"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1678,6 +1678,14 @@
             "markers": "python_version >= '3.6'",
             "version": "==0.2.23"
         },
+        "dominate": {
+            "hashes": [
+                "sha256:76ec2cde23700a6fc4fee098168b9dee43b99c2f1dd0ca6a711f683e8eb7e1e4",
+                "sha256:84b5f71ed30021193cb0faa45d7776e1083f392cfe67a49f44e98cb2ed76c036"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==2.6.0"
+        },
         "dslinter": {
             "hashes": [
                 "sha256:ad39de4e0e1f4bb2544e990e2388ae11b0074d2f89dca283882e745862004604",
@@ -1868,6 +1876,14 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==62.3.4"
+        },
+        "smelly-python": {
+            "hashes": [
+                "sha256:4285604f8d8d5166b4d3c651de6e418cf36bde559f424f3cf4cdcdecaa6cef31",
+                "sha256:9e507f62437dd4b78f5481e1c54597639e9f9ef3c9fce3ac47ab26da8d9c8725"
+            ],
+            "index": "pypi",
+            "version": "==0.0.7"
         },
         "toml": {
             "hashes": [
