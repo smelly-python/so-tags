@@ -15,7 +15,8 @@ class Binarizer:
 
     def __init__(self, y_train):
         if y_train is not None:
-            self.mlb = MultiLabelBinarizer(classes=sorted(get_tags_count(y_train).keys()))
+            self.mlb = MultiLabelBinarizer(
+                classes=sorted(get_tags_count(y_train).keys()))
 
     def binarize_training(self, y_train, y_val):
         """
