@@ -17,20 +17,20 @@ stages:
       md5: 607b70217f89a1955248bd12833026e9
       size: 1881
     - path: output/classifier.pkl
-      md5: f23d3b8e17b360fa4f8e6cc5b2e5f5ce
+      md5: 8744990f301fa4feb64e2af66cc3c308
       size: 14666649
     - path: output/evaluation.json
-      md5: 37003e0ef8096691b3971f38acc2165a
-      size: 150
+      md5: c762cf4d50e2d51ed61ab1e0e3ded6a8
+      size: 136
     - path: output/vectorizer.pkl
-      md5: e1ed18f7932291e49cf3c9ddf7c11384
-      size: 5381461
+      md5: c7ff087f9d7018b2efd04dbc71efc605
+      size: 5381462
   get_data:
     cmd: pipenv run download_data
     deps:
     - path: config.yaml
-      md5: 7f4a42c853614a1c2a19e8a3ee418434
-      size: 288
+      md5: 9a70f265013d5a32ff7c8fded536a0c0
+      size: 289
     - path: src/data/download_files.py
       md5: 1327adf6f4a63008af2a1759ed87c8fa
       size: 653
