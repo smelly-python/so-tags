@@ -18,9 +18,9 @@ pyyaml = "~=6.0"
 gdown = "~=4.4.0"
 
 [dev-packages]
-pylint = "~=2.13.9"
-dslinter = "~=1.0.0"
 pytest = "~=7.1.2"
+dslinter = "~=2.0.8"
+pylint = "~=2.12.2"
 
 [requires]
 python_version = "3.9"
