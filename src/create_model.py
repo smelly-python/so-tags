@@ -17,7 +17,7 @@ def read_data(filename):
     """
     Read data from a file.
     """
-    data = pd.read_csv(filename, sep='\t', dtype={'title': 'str', 'tags': 'str'})[['title', 'tags']]
+    data = pd.read_csv(filename, sep='\t')
     data['tags'] = data['tags'].apply(literal_eval)
     return data
 
