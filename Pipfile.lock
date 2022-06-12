@@ -1301,9 +1301,6 @@
             "version": "==2022.6.2"
         },
         "requests": {
-            "extras": [
-                "socks"
-            ],
             "hashes": [
                 "sha256:bc7861137fbce630f17b03d3ad02ad0bf978c844f3536d0edda6499dafce2b6f",
                 "sha256:d568723a7ebd25875d8d1eaf5dfa068cd2fc8194b2e483d7b1f7c81918dbec6b"
