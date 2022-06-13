@@ -32,7 +32,7 @@ spec:
       app: so-tags-service
   endpoints:
   - targetPort: 8080
-    path: "/metrics"
+    path: "/monitor"
     interval: 1s
 --- 
 apiVersion: v1

@@ -25,7 +25,7 @@ with open(path.join('output', 'evaluation.json'), 'r', encoding='utf-8') as eval
     evaluation_results = json.load(eval_file)
 
 
-COUNTER = 0
+global_variables = {"counter": 0}
 
 
 @app.route('/predict', methods=['POST'])
@@ -59,7 +59,7 @@ def predict():
         "so_title": so_title
     }
 
-    COUNTER += 1
+    global_variables["counter"] += 1
 
     return jsonify(res)
 
@@ -90,17 +90,17 @@ def dumb_predict():
     return jsonify(res)
 
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8080, debug=True)
-
-
-@app.route("/monitor", methods=['GET'])
-def mointor_route():
+@app.route("/monitor")
+def monitor():
     """
     Return the monitoring stats.
     """
 
     ret_string = "# HELP count_prediction The number of predictions made\n"
     ret_string += "# TYPE count_prediciont counter\n"
-    ret_string += f"count_predcition {COUNTER}\n\n"
+    ret_string += f"count_prediction {global_variables['counter']}\n\n"
     return ret_string
+
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=8080, debug=True)

@@ -14,7 +14,11 @@ COPY src ./src
 
 COPY data ./data
 
-RUN pipenv run python -m src.create_model
+COPY config.yaml ./config.yaml
+
+RUN pipenv run download_data
+
+RUN pipenv run create
 
 EXPOSE 8080
 

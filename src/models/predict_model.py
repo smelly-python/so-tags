@@ -11,8 +11,7 @@ class Predictor:
         Contains all the parts of the system to make predictions after training.
     """
 
-    def __init__(self, classifier, vectorizer: Vectorizer,
-                 binarizer: Binarizer):
+    def __init__(self, classifier, vectorizer: Vectorizer, binarizer: Binarizer):
         self.clf = classifier
         self.vectorizer = vectorizer
         self.binarizer = binarizer
