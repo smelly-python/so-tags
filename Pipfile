@@ -22,12 +22,13 @@ dvc = "~=2.11.0"
 pytest = "~=7.1.2"
 dslinter = "~=2.0.8"
 pylint = "~=2.12.2"
+smelly-python = "*"
 
 [requires]
 python_version = "3.9"
 
 [scripts]
-pylint = "pylint src"
+report = "smelly-python -d src"
 test = "pytest test"
 serve = "python -m src.serve_model"
 create = "python -m src.create_model"
