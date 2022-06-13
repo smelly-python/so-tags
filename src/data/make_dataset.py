@@ -9,8 +9,7 @@ def read_data(filename):
     """
     Read the data.
     """
-    data = pd.read_csv(filename, sep='\t', dtype={'title': 'str', 'tags': 'str'})[
-        ['title', 'tags']]
+    data = pd.read_csv(filename, sep='\t', dtype={'title': 'str', 'tags': 'str'})[['title', 'tags']]
     data['tags'] = data['tags'].apply(literal_eval)
     return data
 
@@ -25,12 +24,7 @@ def make_dataset():
     validation = read_data('data/validation.tsv')
     X_val, y_val = validation['title'].values, validation['tags'].values
 
-    test = pd.read_csv(
-        'data/test.tsv',
-        sep='\t',
-        dtype={
-            'title': 'str'})[
-        ['title']]
+    test = pd.read_csv('data/test.tsv', sep='\t', dtype={'title': 'str'})[['title']]
     X_test = test['title'].values
 
     return X_train, y_train, X_val, y_val, X_test
