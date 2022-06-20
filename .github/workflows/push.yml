@@ -56,6 +56,6 @@ jobs:
         pipenv install --dev
     - name: Download dataset
       run: pipenv run download_data
-    - name: Analysing the code with pylint
+    - name: Running the tests
       run: |
         pipenv run test
