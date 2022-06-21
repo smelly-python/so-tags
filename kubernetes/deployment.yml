@@ -19,12 +19,28 @@ spec:
         image: ghcr.io/smelly-python/so-tags:latest
         ports: 
         - containerPort: 8080
-
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mymonitor
+  labels: 
+    release: promstack
+spec: 
+  selector: 
+    matchLabels: 
+      app: so-tags-service
+  endpoints:
+  - targetPort: 8080
+    path: "/monitor"
+    interval: 1s
 --- 
 apiVersion: v1
 kind: Service
 metadata:
   name: so-tags-service
+  labels: 
+    app: so-tags-service
 spec:
   selector: 
     app: so-tags
@@ -43,5 +59,4 @@ spec:
     service:
       name: so-tags-service
       port:
-        number: 31234
-          
+        number: 31234        

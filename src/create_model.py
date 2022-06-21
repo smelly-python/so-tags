@@ -17,7 +17,8 @@ def read_data(filename):
     """
     Read data from a file.
     """
-    data = pd.read_csv(filename, sep='\t', dtype={'title': 'str', 'tags': 'str'})[['title', 'tags']]
+    data = pd.read_csv(filename, sep='\t', dtype={'title': 'str', 'tags': 'str'})[
+        ['title', 'tags']]
     data['tags'] = data['tags'].apply(literal_eval)
     return data
 
@@ -33,7 +34,8 @@ if __name__ == '__main__':
     X_test = data_text_prepare(X_test)
     # build preparation
     vectorizer = Vectorizer()
-    X_train, X_val, X_test, vocab = vectorizer.tfidf_features_training(X_train, X_val, X_test)
+    X_train, X_val, X_test, vocab = vectorizer.tfidf_features_training(
+        X_train, X_val, X_test)
     vectorizer.write_to_file(OUTPUT_FOLDER)
 
     # binarize labels
