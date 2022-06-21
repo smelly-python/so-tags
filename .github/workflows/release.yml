@@ -30,7 +30,7 @@ jobs:
         pipenv install --dev
     - name: Analysing the code with pylint
       run: |
-        pipenv run pylint
+        pipenv run pylint src
   tests: 
     name: tests
     runs-on: ubuntu-20.04
