@@ -1,37 +1,37 @@
 [MASTER]
-;init-hook='import sys; sys.path.append("./src")'
+init-hook='import sys; sys.path.append("./src")'
 
-; disable dslinter to make pylint exports work
-;load-plugins=dslinter
+load-plugins=dslinter
 variable-rgx=[A-Za-z_][a-z0-9_]
 
 
-;[MESSAGES CONTROL]
-;enable=import,
-;        unnecessary-iteration-pandas,
-;        unnecessary-iteration-tensorflow,
-;        nan-numpy,
-;        chain-indexing-pandas,
-;        merge-parameter-pandas,
-;        inplace-pandas,
-;        dataframe-conversion-pandas,
-;        scaler-missing-scikitlearn,
-;        hyperparameters-scikitlearn,
-;        hyperparameters-tensorflow,
-;        hyperparameters-pytorch,
-;        memory-release-tensorflow,
-;        deterministic-pytorch,
-;        randomness-control-numpy,
-;        randomness-control-scikitlearn,
-;        randomness-control-tensorflow,
-;        randomness-control-pytorch,
-;        randomness-control-dataloader-pytorch,
-;        missing-mask-tensorflow,
-;        missing-mask-pytorch,
-;        tensor-array-tensorflow,
-;        forward-pytorch,
-;        gradient-clear-pytorch,
-;        data-leakage-scikitlearn,
-;        dependent-threshold-scikitlearn,
-;        dependent-threshold-tensorflow,
-;        dependent-threshold-pytorch
+[MESSAGES CONTROL]
+disable=all
+enable=import,
+        unnecessary-iteration-pandas,
+        unnecessary-iteration-tensorflow,
+        nan-numpy,
+        chain-indexing-pandas,
+        merge-parameter-pandas,
+        inplace-pandas,
+        dataframe-conversion-pandas,
+        scaler-missing-scikitlearn,
+        hyperparameters-scikitlearn,
+        hyperparameters-tensorflow,
+        hyperparameters-pytorch,
+        memory-release-tensorflow,
+        deterministic-pytorch,
+        randomness-control-numpy,
+        randomness-control-scikitlearn,
+        randomness-control-tensorflow,
+        randomness-control-pytorch,
+        randomness-control-dataloader-pytorch,
+        missing-mask-tensorflow,
+        missing-mask-pytorch,
+        tensor-array-tensorflow,
+        forward-pytorch,
+        gradient-clear-pytorch,
+        data-leakage-scikitlearn,
+        dependent-threshold-scikitlearn,
+        dependent-threshold-tensorflow,
+        dependent-threshold-pytorch
