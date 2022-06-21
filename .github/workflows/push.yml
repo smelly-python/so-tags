@@ -54,6 +54,8 @@ jobs:
       run: |
         python -m pip install --upgrade pipenv wheel
         pipenv install --dev
-    - name: Analysing the code with pylint
+    - name: Download dataset
+      run: pipenv run download_data
+    - name: Running the tests
       run: |
         pipenv run test
